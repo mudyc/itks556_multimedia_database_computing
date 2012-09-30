@@ -211,6 +211,7 @@ def img_impression(impression):
 
     for color in rdf.fetch_1xa('data.triple', url):
         if color.startswith(Vocab.color_):
+            logging.info('impression to db '+url+", "+color)
             count = rdf.fetch_11x('data.triple', url, color)[0]
             rdf.add('data.triple', color, Vocab.impression_+impression, count)
     
