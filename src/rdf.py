@@ -74,7 +74,7 @@ def fetch_11x(file_, subj, pred):
     lines = f.readlines()
     f.close()
     ret = []
-    test = subj+' '+pred
+    test = subj+' '+pred+' '
     for line in lines:
         if line.startswith(test):
             ret.append(line[:-1].split(' ')[2])
