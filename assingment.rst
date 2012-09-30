@@ -17,3 +17,10 @@ Title: Design and Implementation of a Multimedia Database:
    database processing are shown.
 
 
+
+Two hour googling of how to get this Munsell's color system. Now I
+found conversion table for rgb values.
+http://www.cis.rit.edu/mcsl/online/munsell.php and that had a link to http://www.cis.rit.edu/research/mcsl2/online/real_sRGB.xls
+
+
+
