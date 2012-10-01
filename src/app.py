@@ -211,7 +211,6 @@ def img_impression(impression):
 
     for color in rdf.fetch_1xa('data.triple', url):
         if color.startswith(Vocab.color_):
-            logging.info('impression to db '+url+", "+color)
             count = rdf.fetch_11x('data.triple', url, color)[0]
             rdf.add('data.triple', color, Vocab.impression_+impression, count)
     
@@ -226,6 +225,7 @@ def top_impression():
     mark_img_histogram(url, imgdata)
 
     impressions = {}
+    impressionsCounter = {}
     maxcc = (0,0)
     for color in rdf.fetch_1xa('data.triple', url):
         if color.startswith(Vocab.color_):
@@ -236,13 +236,16 @@ def top_impression():
         for impcount in rdf.fetch_11x('data.triple', maxcc[0], impression):
             if impression not in impressions:
                 impressions[impression] = long(impcount)
+                impressionsCounter[impression] = 1
             else:
                 impressions[impression] += long(impcount)
+                impressionsCounter[impression] += 1
 
     maximp = (0,0)
     for imp, count in impressions.items():
-        if maximp[1] < count:
-            maximp = (imp, count)
+        aveg = count / impressionsCounter[impression];
+        if maximp[1] < aveg:
+            maximp = (imp, aveg)
     logging.info(maximp)
     return maximp[0][len(Vocab.impression_):]
 
